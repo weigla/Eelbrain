@@ -41,17 +41,17 @@ class SubParc(Parcellation):
 
     Parameters
     ----------
-    base : str
+    base
         The name of the parcellation that provides the input labels. A common
         ``base`` is the ``'aparc'`` parcellation [1]_.
-    labels : tuple of str
+    labels
         Labels to copy from ``base``. In order to include a label in both
         hemispheres, omit the ``*-hemi`` tag. For example, with
         ``base='aparc'``, ``labels=('transversetemporal',)`` would include the
         transverse temporal gyrus in both hemisphere, whereas
         ``labels=('transversetemporal-lh',)`` would include the transverse
         temporal gyrus of only the left hemisphere.
-    views : sequence of str
+    views
         Views shown in anatomical plots, e.g. ``("medial", "lateral")``.
 
     See Also
