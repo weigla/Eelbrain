@@ -1,4 +1,6 @@
+from functools import reduce
 from math import ceil, floor
+import operator
 import os
 from pathlib import Path
 import re
@@ -775,6 +777,8 @@ def combination_label(
             label = eval(exp.replace('.', '_'), env, local_env)
         except Exception as exc:
             raise ValueError(f"{exp=}: Invalid label expression\n{exc}")
+        if isinstance(label, list):
+            label = reduce(operator.add, label)
         label.name = f'{name}-{hemi}'
         out.append(label)
 

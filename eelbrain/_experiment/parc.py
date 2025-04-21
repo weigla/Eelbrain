@@ -149,6 +149,13 @@ class CombinationParc(Parcellation):
                 }, views='medial'),
         }
 
+    Posterior 2/3 of the combined superior temporal gyrus and Heschl's gyrus::
+
+        parcs = {
+            'STG301': CombinationParc('aparc', {'STG301': "split(transversetemporal + superiortemporal, 3)[:2]"}),
+        }
+
+
     References
     ----------
     .. [1] Desikan, R. S., Ségonne, F., Fischl, B., Quinn, B. T., Dickerson, B.
