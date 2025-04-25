@@ -273,7 +273,7 @@ class BoostingResult(PickleableDataClass):
             else:
                 x = ' + '.join(map(str, self.x))
             items.append(f'{self.tstart:g} - {self.tstop:g}')
-        items.insert(0, f'boosting {self.y} ~ {x}')
+        items.insert(0, f'{self.__class__.__name__} {self.y} ~ {x}')
         for name, param in inspect.signature(boosting).parameters.items():
             if param.default is inspect.Signature.empty or name == 'data':
                 continue
