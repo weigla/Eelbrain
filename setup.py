@@ -5,7 +5,9 @@ import os
 from pathlib import Path
 import platform
 import re
-from setuptools import setup, find_packages, Extension
+from setuptools import setup, dist, find_packages, Extension
+
+dist.Distribution().fetch_build_eggs(['numpy>=1.20', 'cython>=3'])
 
 import numpy as np
 
