@@ -829,7 +829,7 @@ class Boosting:
                 if self.error == 'l1':
                     metrics.append('vec-corr-l1')
             else:
-                metrics = ['l1_residual', 'l2_residual', 'r', 'r_rank', 'l1_total', 'l2_total']
+                metrics = ['l1_residual', 'l2_residual', 'r', 'mi', 'r_rank', 'l1_total', 'l2_total']
 
         # test sets to use
         if cross_fit:
