@@ -1,5 +1,6 @@
 """
 Gaussian copula mutual information estimation
+from https://github.com/robince/gcmi
 """
 
 import numpy as np
