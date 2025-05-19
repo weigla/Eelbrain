@@ -5,6 +5,7 @@ from warnings import catch_warnings, filterwarnings
 import numpy as np
 from scipy.linalg import norm
 from scipy.stats import spearmanr
+from .._external.gcmi import gcmi_cc
 try:
     from scipy.stats import ConstantInputWarning  # >= 1.9
 except ImportError:
@@ -58,6 +59,25 @@ class Evaluator:
 
     def get(self, i_test: int = -1):
         return self.data.package_value(self.xs[i_test + 1], self.name, meas=self.meas)
+
+class mi(Evaluator):
+    attr = 'bits'
+    name = 'mi'
+    meas = 'bits'
+
+    def add_y(
+            self,
+            i: int,  # y index (row in data.y)
+            y: np.ndarray,  # actual data
+            y_pred: np.ndarray,  # data predicted by model
+    ):
+        for x, segments in zip(self.xs, self.segments):
+            y_i, y_pred_i = self._crop_y(segments, y, y_pred)
+            with catch_warnings():
+                filterwarnings('ignore', "invalid value encountered", RuntimeWarning)
+                mi = gcmi_cc(y_i, y_pred_i)
+
+            x[i] = 0 if np.isnan(mi) else mi
 
 
 class L1(Evaluator):
@@ -270,6 +290,7 @@ EVALUATORS = {
     'l1_total': L1Total,
     'l2_total': L2Total,
     'r': Correlation,
+    'mi': mi,
     'r_rank': RankCorrelation,
     'vec-l1': VectorL1,
     'vec-l2': VectorL2,
