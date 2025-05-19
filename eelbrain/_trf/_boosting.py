@@ -215,6 +215,7 @@ class BoostingResult(PickleableDataClass):
     l1_total: Union[float, NDVar] = None
     l2_total: Union[float, NDVar] = None
     r: Union[float, NDVar] = None
+    mi: Union[float, NDVar] = None
     r_rank: Union[float, NDVar] = None
     r_l1: NDVar = None
     partition_results: List[BoostingResult] = None
@@ -539,7 +540,7 @@ class BoostingResult(PickleableDataClass):
             return func(obj)
 
         # NDVars
-        for attr in ('_h', 'r', 'r_rank', 'residual', 'y_mean', 'y_scale'):
+        for attr in ('_h', 'r', 'mi', 'r_rank', 'residual', 'y_mean', 'y_scale'):
             setattr(self, attr, sub_func(getattr(self, attr)))
 
         # List of Dimension
