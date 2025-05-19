@@ -61,7 +61,7 @@ class Evaluator:
         return self.data.package_value(self.xs[i_test + 1], self.name, meas=self.meas)
 
 class mi(Evaluator):
-    attr = 'bits'
+    attr = 'mi'
     name = 'mi'
     meas = 'bits'
 

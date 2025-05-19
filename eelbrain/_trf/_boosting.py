@@ -216,6 +216,7 @@ class BoostingResult(PickleableDataClass):
     l2_total: Union[float, NDVar] = None
     r: Union[float, NDVar] = None
     mi: Union[float, NDVar] = None
+    bits: Union[float, NDVar] = None
     r_rank: Union[float, NDVar] = None
     r_l1: NDVar = None
     partition_results: List[BoostingResult] = None
