@@ -1,6 +1,6 @@
 # Author: Christian Brodbeck <christianbrodbeck@nyu.edu>
 from typing import List
-from warnings import catch_warnings, filterwarnings
+from warnings import catch_warnings, filterwarnings, warn
 
 import numpy as np
 from scipy.linalg import norm
@@ -74,7 +74,8 @@ class mi(Evaluator):
         for x, segments in zip(self.xs, self.segments):
             y_i, y_pred_i = self._crop_y(segments, y, y_pred)
             with catch_warnings():
-                filterwarnings('ignore', "invalid value encountered", RuntimeWarning)
+                filterwarnings('ignore', "Input x has more than 10% repeated values")
+                filterwarnings('ignore', "Input y has more than 10% repeated values")
                 mi = gcmi_cc(y_i, y_pred_i)
 
             x[i] = 0 if np.isnan(mi) else mi
